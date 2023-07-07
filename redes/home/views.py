@@ -3,11 +3,13 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.http import JsonResponse
 import json
-
+import os
 import pandas as pd
 import warnings
 from sdv.tabular import GaussianCopula
 
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 @api_view(['GET', 'POST'])
 def modelo(request):
@@ -15,7 +17,7 @@ def modelo(request):
     List all code snippets, or create a new snippet.
     """
     if request.method == 'GET':
-        model = GaussianCopula.load('/home/bruno/Projetos/Disciplinas/Redes/aplicacao/redes/home/2010-2023.pk')
+        model = GaussianCopula.load(BASE_DIR + str('/home/2010-2023.pk'))
 
         quantidade = request.query_params['quantidade']
 
